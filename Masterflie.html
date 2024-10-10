@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsGanj</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        /* WordArt Styling for NewsGanj */
+        .wordart {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48px;
+            font-weight: bold;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        :root {
+            --primary-text-color: #243a51;
+            --secondary-text-color: #6b7f96;
+            --highlight-color: #ff5733;
+            --highlight-hover: #c4422b;
+            --background-color: #f0f4f8;
+            --card-background: #ffffff;
+        }
+
+        body {
+            font-family: "Roboto", sans-serif;
+            background-color: var(--background-color);
+            color: var(--primary-text-color);
+        }
+
+        p {
+            color: var(--secondary-text-color);
+            line-height: 1.6rem;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .flex {
+            display: flex;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        nav {
+            background-color: #eef3f9;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .main-nav {
+            justify-content: space-between;
+            padding: 12px;
+        }
+
+        .nav-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-left: 10px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-links ul {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-item {
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background-color: var(--highlight-color);
+            color: white;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 12px;
+        }
+
+        .search-input {
+            width: 240px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .search-btn {
+            background-color: var(--highlight-color);
+            color: white;
+            padding: 8px 18px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-btn:hover {
+            background-color: var(--highlight-hover);
+        }
+
+        main {
+            margin-top: 100px;
+            padding: 40px 0;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-around;
+        }
+
+        .card {
+            width: 340px;
+            background-color: var(--card-background);
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 16px;
+        }
+
+        .news-source {
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: var(--secondary-text-color);
+        }
+
+        .read-more-btn {
+            display: inline-block;
+            background-color: var(--highlight-color);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .read-more-btn:hover {
+            background-color: var(--highlight-hover);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="main-nav container flex">
+            <span class="nav-title">NewsGanj</span>
+            <div class="nav-links">
+                <ul>
+                    <li class="nav-item" id="sports">Sports</li>
+                    <li class="nav-item" id="world">World</li>
+                    <li class="nav-item" id="science">Science</li>
+                    <li class="nav-item" id="health">Health</li>
+                </ul>
+            </div>
+            <div class="search-bar">
+                <input type="text" class="search-input" id="search-term" placeholder="Search news...">
+                <button class="search-btn" id="search-btn">Search</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="cards-container container" id="news-cards">
+            <!-- Card 1 -->
+            <!-- <div class="card">
+                <div class="card-header">
+                    <img src="https://via.placeholder.com/400x200" alt="Sports Image">
+                </div>
+                <div class="card-content">
+                    <h3 class="news-title">Champions League Final: A Clash of Titans</h3>
+                    <h6 class="news-source">Sports Daily · 10/10/2024</h6>
+                    <p class="news-description">The 2024 Champions League final promises to be a thrilling contest between two European giants. Fans eagerly await this epic showdown.</p>
+                    <a href="complete-article1.html" class="read-more-btn">Read More</a>
+                </div>
+            </div> -->
+
+            <!-- Card 2 -->
+            <!-- <div class="card">
+                <div class="card-header">
+                    <img src="https://via.placeholder.com/400x200" alt="World News Image">
+                </div>
+                <div class="card-content">
+                    <h3 class="news-title">World Leaders Gather for Climate Summit</h3>
+                    <h6 class="news-source">Global News · 10/10/2024</h6>
+                    <p class="news-description">In a historic meeting, world leaders have come together to discuss pressing climate issues and strategize global solutions.</p>
+                    <a href="complete-article2.html" class="read-more-btn">Read More</a>
+                </div>
+            </div> -->
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-header">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Prof_Phillip_Ruffles%2C_Ratan_Tata%2C_Lord_Bhattacharyya%2C_Paul_Barrett%2C_Dr_Ralf_Speth_%28cropped%29.jpg/640px-Prof_Phillip_Ruffles%2C_Ratan_Tata%2C_Lord_Bhattacharyya%2C_Paul_Barrett%2C_Dr_Ralf_Speth_%28cropped%29.jpg" alt="Ratan Tata">
+                </div>
+                <div class="card-content">
+                    <h3 class="news-title">Ratan Tata: A Legacy of Excellence and Philanthropy</h3>
+                    <h6 class="news-source">Source: NewsGanj · October 10, 2024</h6>
+                    <p class="news-description">Ratan Tata, the renowned industrialist and former chairman of Tata Sons, has passed away at the age of 86, leaving a profound impact on India.</p>
+                    <a href="Article.html" class="read-more-btn">Read More</a>
+
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
